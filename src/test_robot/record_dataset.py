@@ -1,3 +1,9 @@
+from lerobot.datasets import video_utils
+
+from test_robot.patches.video_encoding import fast_encode_video_frames
+
+video_utils.encode_video_frames = fast_encode_video_frames
+
 import time
 import traceback
 from concurrent.futures import ThreadPoolExecutor
@@ -60,12 +66,13 @@ def fast_sample_images(image_paths: list[str]) -> np.ndarray:
 
 
 # Apply monkey patches
-compute_stats.sample_images = fast_sample_images
-compute_stats.load_image_as_numpy = fast_load_image_as_numpy
+# compute_stats.sample_images = fast_sample_images
+# compute_stats.load_image_as_numpy = fast_load_image_as_numpy
+
 
 FPS = 30
-NUM_EPISODES = 20
-EPISODE_TIME_SEC = 20
+NUM_EPISODES = 1
+EPISODE_TIME_SEC = 60
 RESET_TIME_SEC = 3
 TASK_DESCRIPTION = "Place box on plate"
 

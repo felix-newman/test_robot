@@ -5,6 +5,7 @@ from lerobot.teleoperators.so101_leader import SO101Leader, SO101LeaderConfig
 
 from test_robot.config import robot_config, teleop_config
 
+
 def main():
     print("Starting teleop...")
 

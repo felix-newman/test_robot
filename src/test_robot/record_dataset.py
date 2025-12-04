@@ -78,6 +78,7 @@ TASK_DESCRIPTION = "Place box on plate"
 
 from test_robot.config import robot_config, teleop_config
 
+
 def main():
     print("Starting record dataset...")
 

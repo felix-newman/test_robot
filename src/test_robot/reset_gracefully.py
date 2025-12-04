@@ -6,6 +6,7 @@ from lerobot.teleoperators.so101_leader import SO101Leader, SO101LeaderConfig
 
 from test_robot.config import robot_config, teleop_config
 
+
 def main():
     print("Starting teleop...")
 
@@ -16,24 +17,24 @@ def main():
 
     T_SECONDS = 3
     start_t = time.perf_counter()
-    
+
     # Capture initial positions once
     start_position = robot.get_observation()
     target_position = teleop_device.get_action()
-    
+
     while True:
         cur_t = time.perf_counter()
         elapsed = cur_t - start_t
-        
+
         if elapsed >= T_SECONDS:
             break
 
         # Progress from 0 to 1 over T_SECONDS
         alpha = elapsed / T_SECONDS
-        
+
         # Interpolate: start → target
         smoothed_action = {
-            k: start_position[k] * (1 - alpha) + target_position[k] * alpha 
+            k: start_position[k] * (1 - alpha) + target_position[k] * alpha
             for k in target_position.keys()
         }
         robot.send_action(smoothed_action)

@@ -76,28 +76,7 @@ EPISODE_TIME_SEC = 60
 RESET_TIME_SEC = 3
 TASK_DESCRIPTION = "Place box on plate"
 
-camera_config = {
-    "front": OpenCVCameraConfig(
-        index_or_path=4, width=640, height=480, fps=30, fourcc="MJPG"
-    ),
-    "top": OpenCVCameraConfig(
-        index_or_path=6,
-        width=int(1280 * 0.5),
-        height=int(720 * 0.5),
-        fps=30,
-        fourcc="MJPG",
-    ),
-}
-
-robot_config = SO101FollowerConfig(
-    port="/dev/ttyACM0", id="my_awesome_follower_arm", cameras=camera_config
-)
-
-teleop_config = SO101LeaderConfig(
-    port="/dev/ttyACM1",
-    id="my_awesome_leader_arm",
-)
-
+from test_robot.config import robot_config, teleop_config
 
 def main():
     print("Starting record dataset...")

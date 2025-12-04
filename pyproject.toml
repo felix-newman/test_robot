@@ -11,7 +11,7 @@ dependencies = [
     "gym-hil>=0.1.13",
     "huggingface-hub>=0.35.3",
     "jupyter>=1.1.1",
-    "lerobot[async,feetech]>=0.4.0",
+    "lerobot[async,feetech,smolvla,pi] @ git+https://github.com/huggingface/lerobot.git",
     "matplotlib>=3.10.7",
     "opencv-python>=4.12.0.88",
     "py-spy>=0.4.1",
@@ -23,6 +23,7 @@ dependencies = [
 test-robot = "test_robot:main"
 tele = "test_robot.start_teleop:main"
 record = "test_robot.record_dataset:main"
+reset = "test_robot.reset_gracefully:main"
 
 [build-system]
 requires = ["uv_build>=0.9.5,<0.10.0"]

@@ -4454,6 +4454,7 @@ name = "test-robot"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "accelerate" },
     { name = "gym-hil" },
     { name = "huggingface-hub" },
     { name = "jupyter" },
@@ -4467,6 +4468,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "accelerate", specifier = ">=1.12.0" },
     { name = "gym-hil", specifier = ">=0.1.13" },
     { name = "huggingface-hub", specifier = ">=0.35.3" },
     { name = "jupyter", specifier = ">=1.1.1" },

@@ -102,6 +102,7 @@ Can definitely go higher on an 80GB GPU - 35GB of memory
   --dataset.repo_id=felix-newman/eval_pi0_ginger \
   --dataset.single_task="Pickup pickup" \
   --dataset.episode_time_s=30 \
+  --dataset.num_episodes=10 \
   --policy.type=pi0 \
   --policy.pretrained_path=/home/felix/repos/test_robot/outputs/pi0/015000/pretrained_model
 `

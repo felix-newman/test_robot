@@ -8,6 +8,7 @@ authors = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+    "accelerate>=1.12.0",
     "gym-hil>=0.1.13",
     "huggingface-hub>=0.35.3",
     "jupyter>=1.1.1",

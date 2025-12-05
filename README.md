@@ -2,6 +2,9 @@
 For pi0.5: 
 `uv pip install "lerobot[pi]@git+https://github.com/huggingface/lerobot.git"`
 
+Due to a bug in transformers the following is necessary before any install: 
+`export GIT_LFS_SKIP_SMUDGE=1`
+
 
 # Visualize dataset
 
@@ -91,6 +94,43 @@ Can definitely go higher on an 80GB GPU - 35GB of memory
     --policy.device=cuda \
     --batch_size=1
 `
+
+## with accelerate
+
+`accelerate launch \
+    --multi-gpu \
+    --num_processes=2 \
+    --mixed_precision=bf16 \
+    $(which lerobot-train) \
+    --dataset.repo_id=Themistoflix/ginger_back119ep \
+    --policy.type=pi0 \
+    --output_dir=./outputs/pi0_training \
+    --job_name=pi0_training \
+    --policy.repo_id=Themistoflix/ginger_back119ep \
+    --policy.pretrained_path=lerobot/pi0_base \
+    --policy.compile_model=false \
+    --policy.gradient_checkpointing=true \
+    --use_policy_training_preset=false \
+    --optimizer.type=adamw \
+    --optimizer.lr=1e-4 \
+    --optimizer.weight_decay=1e-2 \
+    --optimizer.eps=1e-6 \
+    --optimizer.betas=[0.9,0.999] \
+    --optimizer.grad_clip_norm=1.0 \
+    --scheduler.type=cosine_decay_with_warmup \
+    --scheduler.num_warmup_steps=500 \
+    --scheduler.num_decay_steps=7500 \
+    --scheduler.peak_lr=1e-4 \
+    --scheduler.decay_lr=1e-5 \
+    --wandb.enable=true \
+    --policy.dtype=bfloat16 \
+    --steps=7500 \
+    --save_freq=5000 \
+    --policy.device=cuda \
+    --batch_size=128
+`
+Smaller batch size is probably fine. 
+
 # Run pi0
 `
 `lerobot-record \

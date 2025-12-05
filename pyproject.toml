@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "Felix Neumann", email = "felix.maximilian.neumann@gmail.com" }
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "accelerate>=1.12.0",
     "gym-hil>=0.1.13",
@@ -18,7 +18,17 @@ dependencies = [
     "py-spy>=0.4.1",
     "python-dotenv>=1.2.1",
     "wandb>=0.21.4",
+    # Override torch to use CUDA 12.8 for RTX 5090 support
+    "torch>=2.7.0",
 ]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
 
 [project.scripts]
 test-robot = "test_robot:main"
